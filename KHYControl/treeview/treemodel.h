@@ -26,7 +26,7 @@ private:
     int rowCount(const QModelIndex &parent = QModelIndex()) const override;
     int columnCount(const QModelIndex &parent = QModelIndex()) const override;
     //bool setData(const QModelIndex &index, const QVariant &value, int role);
-    QMimeData*  mimeData(const QModelIndexList &indexes) const
+    /*QMimeData*  mimeData(const QModelIndexList &indexes) const
     {
         QMimeData* mimeD = QAbstractItemModel::mimeData(indexes);				//先获取原始的mimeData;
     
@@ -46,9 +46,15 @@ private:
     
         return mimeD;
         //mimeD->setData()
-    }
+    }*/
+    bool canDropMimeData(const QMimeData *data, Qt::DropAction action,
+                             int row, int column,
+                             const QModelIndex &parent) const override;
+    QMimeData *mimeData(const QModelIndexList &indexes) const override;
+    bool dropMimeData(const QMimeData *data, Qt::DropAction action, int row, int column, const QModelIndex &parent) override;
 private:
     TreeItem *rootItem;
+    QModelIndex draggedIndex;
 signals:
 
 public slots:

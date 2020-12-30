@@ -48,3 +48,26 @@ int TreeItem::row() const
 
     return 0;
 }
+
+void TreeItem::remove(TreeItem *item1, TreeItem *item2)
+{
+    foreach(auto node, childItems)
+    {
+        if (node == item1)
+        {
+            childItems.removeOne(item1);
+            break;
+        }
+
+    }
+    int i = 0;
+    foreach(auto node, childItems)
+    {
+        i++;
+        if (node == item2)
+        {
+            childItems.insert(i, item1);
+        }
+
+    }
+}

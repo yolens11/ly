@@ -47,6 +47,11 @@ QVariant TreeModel::data(const QModelIndex &index, int role) const
         TreeItem *item=static_cast<TreeItem*>(index.internalPointer());
          return item->data(index.column());
     }
+    else if (role==Qt::SizeHintRole)
+    {
+
+        return QSize(36, 35);
+    }
 
     return QVariant();
 }
@@ -56,7 +61,9 @@ Qt::ItemFlags TreeModel::flags(const QModelIndex &index) const
     if(!index.isValid())
         return 0;
 
-    return Qt::ItemIsEnabled|Qt::ItemIsSelectable;
+    Qt::ItemFlags flag = QAbstractItemModel::flags(index);
+    return flag | Qt::ItemIsDragEnabled | Qt::ItemIsDropEnabled;				//允许Model拖动，这个很重要
+    //return Qt::ItemIsEnabled|Qt::ItemIsSelectable;
 }
 
 QVariant TreeModel::headerData(int section, Qt::Orientation orientation,int role) const
@@ -69,6 +76,7 @@ QVariant TreeModel::headerData(int section, Qt::Orientation orientation,int role
 
 QModelIndex TreeModel::index(int row, int column,const QModelIndex &parent) const
 {
+
     if(!hasIndex(row,column,parent))
         return QModelIndex();
 
@@ -119,6 +127,60 @@ int TreeModel::rowCount(const QModelIndex &parent) const
 int TreeModel::columnCount(const QModelIndex &parent ) const
 {
     return rootItem->columnCount();
+}
+#include <QTreeView>
+bool TreeModel::dropMimeData(const QMimeData *data, Qt::DropAction action, int row, int column, const QModelIndex &parent)
+{
+
+    TreeItem *item1=static_cast<TreeItem*>(draggedIndex.internalPointer());
+    TreeItem *item2=static_cast<TreeItem*>(parent.internalPointer());
+
+    rootItem->remove(item1,item2);
+    //beginResetModel();
+    //endResetModel();
+    beginMoveRows(draggedIndex, draggedIndex.row(), draggedIndex.row(), parent, parent.row());
+    endMoveRows();
+
+    return true;
+}
+
+QMimeData *TreeModel::mimeData(const QModelIndexList &indexes) const {
+    // 记住被拖拽的 index
+    TreeModel *self = const_cast<TreeModel*>(this);
+    self->draggedIndex = indexes.size() > 0 ? indexes[0] : QModelIndex();
+
+    return QAbstractItemModel::mimeData(indexes);
+}
+
+bool TreeModel::canDropMimeData(const QMimeData *data, Qt::DropAction action, int row, int column,const QModelIndex &parent) const
+{
+    Q_UNUSED(data)
+    Q_UNUSED(action)
+    Q_UNUSED(row)
+
+    TreeItem *item1=static_cast<TreeItem*>(draggedIndex.internalPointer());
+    TreeItem *item2=static_cast<TreeItem*>(parent.internalPointer());
+    if (item1 == nullptr || item2 == nullptr)
+        return false;
+    if (item1!=item2 && item1->parent() == item2->parent())
+        return true;
+    return false;
+ /*   TreeItem *item1=static_cast<TreeItem*>(draggedIndex.internalPointer());
+    TreeItem *item2=static_cast<TreeItem*>(parent.internalPointer());
+
+    if (item2 == nullptr || item1 == nullptr)
+        return false;
+    if (item1->parent() == item2->parent())
+        return true;
+    return false;*/
+    /*// 只允许拖放到第 0 列
+    if (column > 0) {
+        return false;
+    } else if (parent.isValid() && parent.column() > 0) {
+        return false;
+    } else {
+        return true;
+    }*/
 }
 
 // 设置模型数据,构建包含10个根结点,每个根结点包含两个子节点的树形结构

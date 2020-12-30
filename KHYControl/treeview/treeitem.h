@@ -16,6 +16,7 @@ public:
     int row() const;
     TreeItem *parent();
 
+    void remove(TreeItem *item1, TreeItem *item2);
 private:
     TreeItem *parentItem;  // 父结点
     QList<TreeItem*> childItems; // 子结点列表
