@@ -16,6 +16,8 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    dragview/dragbutton.cpp \
+    dragview/dragview.cpp \
     main.cpp \
     mainwindow.cpp \
     treeview/treeitem.cpp \
@@ -23,12 +25,15 @@ SOURCES += \
     treeview/treewidget.cpp
 
 HEADERS += \
+    dragview/dragbutton.h \
+    dragview/dragview.h \
     mainwindow.h \
     treeview/treeitem.h \
     treeview/treemodel.h \
     treeview/treewidget.h
 
 FORMS += \
+    dragview/dragview.ui \
     mainwindow.ui \
     treeview/treewidget.ui
 
