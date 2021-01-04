@@ -40,6 +40,45 @@
      <string>drag</string>
     </property>
    </widget>
+   <widget class="QPushButton" name="pushButton_splitter">
+    <property name="geometry">
+     <rect>
+      <x>310</x>
+      <y>70</y>
+      <width>75</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>splitter</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_dock">
+    <property name="geometry">
+     <rect>
+      <x>420</x>
+      <y>70</y>
+      <width>75</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>dock</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_flow">
+    <property name="geometry">
+     <rect>
+      <x>100</x>
+      <y>130</y>
+      <width>75</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>flow</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">

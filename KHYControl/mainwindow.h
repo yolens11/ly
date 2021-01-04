@@ -20,6 +20,12 @@ private slots:
 
     void on_pushButton_drag_clicked();
 
+    void on_pushButton_splitter_clicked();
+
+    void on_pushButton_dock_clicked();
+
+    void on_pushButton_flow_clicked();
+
 private:
     Ui::MainWindow *ui;
 };

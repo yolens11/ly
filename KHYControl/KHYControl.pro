@@ -16,25 +16,42 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    dockview/dockwidget.cpp \
+    dockview/dockwidget2.cpp \
+    dockview/dockwidget3.cpp \
     dragview/dragbutton.cpp \
     dragview/dragview.cpp \
+    flowview/flowlayout.cpp \
+    flowview/flowwidget.cpp \
     main.cpp \
     mainwindow.cpp \
+    splitterview/splitterwidget.cpp \
     treeview/treeitem.cpp \
     treeview/treemodel.cpp \
     treeview/treewidget.cpp
 
 HEADERS += \
+    dockview/dockwidget.h \
+    dockview/dockwidget2.h \
+    dockview/dockwidget3.h \
     dragview/dragbutton.h \
     dragview/dragview.h \
+    flowview/flowlayout.h \
+    flowview/flowwidget.h \
     mainwindow.h \
+    splitterview/splitterwidget.h \
     treeview/treeitem.h \
     treeview/treemodel.h \
     treeview/treewidget.h
 
 FORMS += \
+    dockview/dockwidget.ui \
+    dockview/dockwidget2.ui \
+    dockview/dockwidget3.ui \
     dragview/dragview.ui \
+    flowview/flowwidget.ui \
     mainwindow.ui \
+    splitterview/splitterwidget.ui \
     treeview/treewidget.ui
 
 # Default rules for deployment.
