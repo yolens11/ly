@@ -21,6 +21,7 @@ SOURCES += \
     dockview/dockwidget3.cpp \
     dragview/dragbutton.cpp \
     dragview/dragview.cpp \
+    dragview/mymodel.cpp \
     flowview/flowlayout.cpp \
     flowview/flowwidget.cpp \
     main.cpp \
@@ -36,6 +37,7 @@ HEADERS += \
     dockview/dockwidget3.h \
     dragview/dragbutton.h \
     dragview/dragview.h \
+    dragview/mymodel.h \
     flowview/flowlayout.h \
     flowview/flowwidget.h \
     mainwindow.h \
